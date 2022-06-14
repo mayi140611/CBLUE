@@ -119,7 +119,8 @@ def main():
 
         # **** save best model *****
         model = ERModel(model_class, encoder_path=os.path.join(args.output_dir, f'checkpoint-{best_step}'))
-        model.load_state_dict(torch.load(os.path.join(args.output_dir, f'checkpoint-{best_step}', 'pytorch_model.pt')))
+#         model.load_state_dict(torch.load(os.path.join(args.output_dir, f'checkpoint-{best_step}', 'pytorch_model.pt')))
+        model.load_state_dict(torch.load(os.path.join(args.output_dir, f'checkpoint-{best_step}', 'pytorch_model.bin')), strict=False)
         tokenizer = tokenizer_class.from_pretrained(os.path.join(args.output_dir, f'checkpoint-{best_step}'))
         torch.save(model.state_dict(), os.path.join(args.output_dir, 'pytorch_model_er.pt'))
         if not os.path.exists(os.path.join(args.output_dir, 'er')):
@@ -161,7 +162,8 @@ def main():
             config.vocab_size += 4
         model = REModel(tokenizer, model_class, encoder_path=os.path.join(args.output_dir, f'checkpoint-{best_step}'),
                         num_labels=data_processor.num_labels, config=config)
-        model.load_state_dict(torch.load(os.path.join(args.output_dir, f'checkpoint-{best_step}', 'pytorch_model.pt')))
+#         model.load_state_dict(torch.load(os.path.join(args.output_dir, f'checkpoint-{best_step}', 'pytorch_model.pt')))
+        model.load_state_dict(torch.load(os.path.join(args.output_dir, f'checkpoint-{best_step}', 'pytorch_model.bin')), strict=False)
         tokenizer = tokenizer_class.from_pretrained(os.path.join(args.output_dir, f'checkpoint-{best_step}'))
         torch.save(model.state_dict(), os.path.join(args.output_dir, 'pytorch_model_re.pt'))
         if not os.path.exists(os.path.join(args.output_dir, 're')):
