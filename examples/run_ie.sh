@@ -3,10 +3,10 @@ DATA_DIR="CBLUEDatasets"
 
 TASK_NAME="ie"
 MODEL_TYPE="bert"
-# MODEL_DIR="data/model_data"
-# MODEL_NAME="chinese-bert-wwm-ext"
-MODEL_DIR="data/output/ie/chinese-bert-wwm-ext"
-MODEL_NAME="checkpoint-3000"
+MODEL_DIR="data/model_data"
+MODEL_NAME="chinese-bert-wwm-ext"
+# MODEL_DIR="data/output/ie/chinese-bert-wwm-ext"
+# MODEL_NAME="checkpoint-3000"
 OUTPUT_DIR="data/output"
 RESULT_OUTPUT_DIR="data/result_output"
 
@@ -28,7 +28,7 @@ if [ $# == 0 ]; then
         --train_batch_size=32 \
         --eval_batch_size=64 \
         --learning_rate=3e-5 \
-        --epochs=1 \
+        --epochs=10 \
         --warmup_proportion=0.1 \
         --earlystop_patience=100 \
         --max_grad_norm=0.0 \
