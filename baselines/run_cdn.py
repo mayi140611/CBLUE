@@ -13,6 +13,8 @@ from cblue.utils import init_logger, seed_everything
 from cblue.data import CDNDataset, CDNDataProcessor
 from cblue.models import save_zen_model, ZenModel, ZenForSequenceClassification, ZenNgramDict
 
+import transformers
+transformers.logging.set_verbosity_error()
 
 MODEL_CLASS = {
     'bert': (BertTokenizer, BertModel),
@@ -140,7 +142,7 @@ def main():
 
         model = CDNForCLSModel(model_class, encoder_path=os.path.join(args.output_dir, f'checkpoint-{best_step}'),
                                num_labels=data_processor.num_labels_cls)
-        model.load_state_dict(torch.load(os.path.join(args.output_dir, f'checkpoint-{best_step}', 'pytorch_model.pt')))
+        model.load_state_dict(torch.load(os.path.join(args.output_dir, f'checkpoint-{best_step}', 'pytorch_model.bin')), strict=False)
         tokenizer = tokenizer_class.from_pretrained(os.path.join(args.output_dir, f'checkpoint-{best_step}'))
         torch.save(model.state_dict(), os.path.join(args.output_dir, 'pytorch_model_cls.pt'))
         if not os.path.exists(os.path.join(args.output_dir, 'cls')):
