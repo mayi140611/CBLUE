@@ -12,6 +12,8 @@ from cblue.trainer import STSTrainer, QICTrainer, QQRTrainer, QTRTrainer, CTCTra
 from cblue.utils import init_logger, seed_everything
 from cblue.models import ZenConfig, ZenNgramDict, ZenForSequenceClassification, ZenForTokenClassification
 
+import transformers
+transformers.logging.set_verbosity_error()
 
 TASK_DATASET_CLASS = {
     'ee': (EEDataset, EEDataProcessor),
