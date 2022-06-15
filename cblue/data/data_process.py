@@ -346,12 +346,16 @@ class ERDataProcessor(object):
         arg_tuple = self._extract_entity(start_logits, end_logits, text_start_id, text_end_id)
 
         one_role_args = []
+        print(arg_tuple)
         for k in arg_tuple:
             if len(text_mapping) > 3:
                 # len(text_mapping) : token size
                 # k0: 起点    k1: 终点
+                
                 start_split = text_mapping[k[0]]
                 end_split = text_mapping[k[1]]
+#                 start_split = text_mapping[k[0]-1]
+#                 end_split = text_mapping[k[1]-1]
                 if start_split != [] and end_split != []:
                     tmp = text[start_split[0]:end_split[-1] + 1]
                     one_role_args.append(tmp)

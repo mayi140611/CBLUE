@@ -28,7 +28,7 @@ if [ $# == 0 ]; then
         --train_batch_size=32 \
         --eval_batch_size=64 \
         --learning_rate=3e-5 \
-        --epochs=10 \
+        --epochs=1 \
         --warmup_proportion=0.1 \
         --earlystop_patience=100 \
         --max_grad_norm=0.0 \

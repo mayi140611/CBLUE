@@ -191,7 +191,8 @@ def main():
         model.load_state_dict(torch.load(os.path.join(args.output_dir, 'pytorch_model_er.pt')))
         trainer = ERTrainer(args=args, model=model, data_processor=data_processor,
                             tokenizer=tokenizer, logger=logger, model_class=ERModel, ngram_dict=ngram_dict)
-
+#         print(test_dataset[0])
+#         print(test_dataset)
         trainer.predict(test_dataset, model)
 
         tokenizer = tokenizer_class.from_pretrained(os.path.join(args.output_dir, 're'))

@@ -1480,6 +1480,7 @@ class ERTrainer(Trainer):
                     text = test_dataset.texts[step]
                     text_start_id, text_end_id = 1, attention_mask.sum().int().item()  # end+1
                     text_mapping = TokenRematch().rematch(text, self.tokenizer.tokenize(text))
+                    print(text_mapping)
 
                     sub_arg_list = self.data_processor.extract_arg(sub_start_logits.view(-1), sub_end_logits.view(-1), text_start_id, text_end_id,
                                                                    text, text_mapping)
